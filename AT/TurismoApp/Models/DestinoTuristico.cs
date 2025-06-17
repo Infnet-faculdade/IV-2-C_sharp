@@ -1,10 +1,10 @@
-﻿  namespace TurismoApp.Models
+﻿namespace TurismoApp.Models
+{
+    public class DestinoTuristico
     {
-        public class DestinoTuristico
-        {
-            public int Id { get; set; }
-            public string Nome { get; set; }
-            public string Descricao { get; set; }
-            public string Pais { get; set; }
-        }
+        public int Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public string Descricao { get; set; } = string.Empty;
+        public string Pais { get; set; } = string.Empty;
     }
+}

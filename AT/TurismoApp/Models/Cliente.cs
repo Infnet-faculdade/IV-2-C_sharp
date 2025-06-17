@@ -9,11 +9,11 @@ namespace TurismoApp.Models
 
         [Required]
         [MinLength(3, ErrorMessage = "O nome deve ter no mínimo 3 caracteres.")]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = null!;
 
         [Required]
         [EmailAddress(ErrorMessage = "E-mail inválido.")]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         public List<Reserva> Reservas { get; set; } = new List<Reserva>();
     }

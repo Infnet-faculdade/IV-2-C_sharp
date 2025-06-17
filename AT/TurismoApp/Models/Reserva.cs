@@ -9,13 +9,14 @@ namespace TurismoApp.Models
 
         [Required]
         public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
+        public Cliente Cliente { get; set; } = null!;
 
         [Required]
         public int PacoteTuristicoId { get; set; }
-        public PacoteTuristico PacoteTuristico { get; set; }
+        public PacoteTuristico PacoteTuristico { get; set; } = null!;
 
         [Required]
         public DateTime DataReserva { get; set; }
     }
 }
+

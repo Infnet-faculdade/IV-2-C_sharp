@@ -12,7 +12,7 @@ namespace TurismoApp.Pages
     {
         [BindProperty]
         [Required(ErrorMessage = "Informe a mensagem do log")]
-        public string LogMessage { get; set; }
+        public string LogMessage { get; set; } = string.Empty;  // inicializado para evitar warning
 
         // Lista para armazenar logs em memória durante a execução
         public static List<string> MemoryLogList { get; set; } = new();
@@ -20,7 +20,7 @@ namespace TurismoApp.Pages
         public List<string> MemoryLogs => MemoryLogList;
 
         // Delegate Action<string> multicast para logs
-        private Action<string> LogDelegate;
+        private Action<string> LogDelegate { get; set; } = delegate { }; // inicializado para evitar warning
 
         public void OnGet()
         {

@@ -27,15 +27,14 @@ namespace TurismoApp.Models
             {
                 // Capacidade atingida, dispara evento
                 CapacityReached?.Invoke(this, EventArgs.Empty);
+                return; // não adiciona reserva se a capacidade já foi atingida
             }
-            else
-            {
-                Reservas.Add(reserva);
 
-                if (Reservas.Count == CapacidadeMaxima)
-                {
-                    CapacityReached?.Invoke(this, EventArgs.Empty);
-                }
+            Reservas.Add(reserva);
+
+            if (Reservas.Count == CapacidadeMaxima)
+            {
+                CapacityReached?.Invoke(this, EventArgs.Empty);
             }
         }
     }
