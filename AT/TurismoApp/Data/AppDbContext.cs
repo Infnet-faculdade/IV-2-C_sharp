@@ -12,6 +12,8 @@ namespace TurismoApp.Data
         public DbSet<Destino> Destinos { get; set; }
         public DbSet<PacoteTuristico> PacotesTuristicos { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
+        public DbSet<CidadeDestino> CidadeDestino { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
