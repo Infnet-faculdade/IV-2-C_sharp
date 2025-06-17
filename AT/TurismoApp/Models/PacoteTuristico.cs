@@ -6,35 +6,31 @@ namespace TurismoApp.Models
     public class PacoteTuristico
     {
         public int Id { get; set; }
-        public string Titulo { get; set; } = string.Empty;
+        public string Titulo { get; set; }
         public DateTime DataInicio { get; set; }
         public int CapacidadeMaxima { get; set; }
         public decimal Preco { get; set; }
-        public List<Destino> Destinos { get; set; } = new List<Destino>();
 
-        public List<Reserva> Reservas { get; set; } = new List<Reserva>();
+        public List<Destino> Destinos { get; set; } = new();
+        public List<Reserva> Reservas { get; set; } = new();
 
-        // Delegate do evento CapacityReached
-        public delegate void CapacityReachedHandler(object sender, EventArgs e);
+        // Evento que será disparado quando a capacidade for atingida
+        public event Action<string>? CapacityReached;
 
-        // Evento disparado quando a capacidade é atingida
-        public event CapacityReachedHandler? CapacityReached;
-
-        // Método para adicionar reserva
+        // Método para adicionar reserva e disparar o evento se necessário
         public void AdicionarReserva(Reserva reserva)
         {
             if (Reservas.Count >= CapacidadeMaxima)
             {
-                // Capacidade atingida, dispara evento
-                CapacityReached?.Invoke(this, EventArgs.Empty);
-                return; // não adiciona reserva se a capacidade já foi atingida
+                CapacityReached?.Invoke($"⚠️ Capacidade máxima atingida para o pacote \"{Titulo}\".");
+                return;
             }
 
             Reservas.Add(reserva);
 
             if (Reservas.Count == CapacidadeMaxima)
             {
-                CapacityReached?.Invoke(this, EventArgs.Empty);
+                CapacityReached?.Invoke($"⚠️ Última vaga preenchida para o pacote \"{Titulo}\".");
             }
         }
     }

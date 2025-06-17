@@ -1,0 +1,28 @@
+@page
+@model TurismoApp.Pages.CalculateTotalModel
+@{
+    ViewData["Title"] = "Calcular Total da Reserva";
+}
+
+<h2>Calcular Total da Reserva</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Diarias">Número de Diárias:</label>
+        <input asp-for="Diarias" class="form-control" />
+        <span asp-validation-for="Diarias" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="PrecoDiaria">Preço da Diária (R$):</label>
+        <input asp-for="PrecoDiaria" class="form-control" />
+        <span asp-validation-for="PrecoDiaria" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Calcular</button>
+</form>
+
+@if (Model.ResultadoTotal.HasValue)
+{
+<div class="alert alert-success mt-3">
+    Total da Reserva: R$ @Model.ResultadoTotal.Value.ToString("F2")
+</div>
+}
