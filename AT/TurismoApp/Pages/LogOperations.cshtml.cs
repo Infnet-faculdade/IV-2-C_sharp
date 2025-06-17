@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace TurismoApp.Pages
@@ -12,19 +11,16 @@ namespace TurismoApp.Pages
     {
         [BindProperty]
         [Required(ErrorMessage = "Informe a mensagem do log")]
-        public string LogMessage { get; set; } = string.Empty;  // inicializado para evitar warning
+        public string LogMessage { get; set; } = string.Empty;
 
-        // Lista para armazenar logs em memória durante a execução
         public static List<string> MemoryLogList { get; set; } = new();
 
         public List<string> MemoryLogs => MemoryLogList;
 
-        // Delegate Action<string> multicast para logs
-        private Action<string> LogDelegate { get; set; } = delegate { }; // inicializado para evitar warning
+        private Action<string> LogDelegate { get; set; } = delegate { };
 
         public void OnGet()
         {
-            // Configura o multicast delegate com os métodos para registrar em console, arquivo e memória
             LogDelegate = LogToConsole;
             LogDelegate += LogToFile;
             LogDelegate += LogToMemory;
@@ -35,7 +31,6 @@ namespace TurismoApp.Pages
             if (!ModelState.IsValid)
                 return;
 
-            // Configura o multicast delegate
             LogDelegate = LogToConsole;
             LogDelegate += LogToFile;
             LogDelegate += LogToMemory;

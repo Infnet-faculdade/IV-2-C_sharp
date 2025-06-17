@@ -1,0 +1,27 @@
+@page
+@model TurismoApp.Pages.Reservas.CreateModel
+@{
+    ViewData["Title"] = "Nova Reserva";
+}
+
+<h1>Nova Reserva</h1>
+
+<form method="post">
+    <div>
+        <label>Cliente:</label>
+        <select asp-for="Reserva.ClienteId" asp-items="Model.Clientes"></select>
+    </div>
+    <div>
+        <label>Pacote:</label>
+        <select asp-for="Reserva.PacoteTuristicoId" asp-items="Model.Pacotes"></select>
+    </div>
+    <div>
+        <label>Data da Reserva:</label>
+        <input asp-for="Reserva.DataReserva" type="date" />
+    </div>
+    <div>
+        <label>Valor Total:</label>
+        <input asp-for="Reserva.ValorTotal" />
+    </div>
+    <button type="submit">Salvar</button>
+</form>

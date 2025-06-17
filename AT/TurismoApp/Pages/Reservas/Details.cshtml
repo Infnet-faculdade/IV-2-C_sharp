@@ -1,0 +1,23 @@
+@page "{id:int}"
+@model TurismoApp.Pages.Reservas.DetailsModel
+@{
+    ViewData["Title"] = "Detalhes da Reserva";
+}
+
+<h1>Detalhes da Reserva</h1>
+
+<div>
+    <strong>Cliente:</strong> @Model.Reserva.Cliente?.Nome
+</div>
+<div>
+    <strong>Pacote:</strong> @Model.Reserva.PacoteTuristico?.Titulo
+</div>
+<div>
+    <strong>Data da Reserva:</strong> @Model.Reserva.DataReserva.ToString("dd/MM/yyyy")
+</div>
+<div>
+    <strong>Valor Total:</strong> R$ @Model.Reserva.ValorTotal.ToString("F2")
+</div>
+
+<a asp-page="Edit" asp-route-id="@Model.Reserva.Id">Editar</a> |
+<a asp-page="Index">Voltar</a>
