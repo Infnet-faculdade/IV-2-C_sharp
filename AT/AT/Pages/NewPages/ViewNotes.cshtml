@@ -1,0 +1,21 @@
+﻿@page
+@model AT.Pages.NewPages.ViewNotesModel
+@{
+    ViewData["Title"] = "Exibir notas";
+}
+<h2>Lista de Notas</h2>
+
+<ul>
+    @foreach (var file in Model.FileNames)
+    {
+        <li>
+            <a asp-page="/FileContent" asp-route-filename="@file">@file</a>
+        </li>
+    }
+</ul>
+
+@if (Model.SelectedFileName != null)
+{
+    <h3>Conteúdo de: @Model.SelectedFileName</h3>
+    <pre>@Model.FileContent</pre>
+}

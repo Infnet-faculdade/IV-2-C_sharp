@@ -1,0 +1,62 @@
+﻿@page
+@model AT.Pages.Clientes.CreateModel
+@{
+    ViewData["Title"] = "Create";    
+}
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<h1>Cadastrar Cliente</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Cliente.Nome" class="control-label"></label>
+                <input asp-for="Cliente.Nome" class="form-control" />
+                <span asp-validation-for="Cliente.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Cliente.Email" class="control-label"></label>
+                <input asp-for="Cliente.Email" class="form-control" />
+                <span asp-validation-for="Cliente.Email" class="text-danger"></span>
+            </div>
+            <strong>Endereço:</strong>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Cliente.Endereco.Rua" class="form-label"></label>
+                <input asp-for="Cliente.Endereco.Rua" class="form-control" />
+                <span asp-validation-for="Cliente.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Cliente.Endereco.Cidade" class="form-label"></label>
+                <input asp-for="Cliente.Endereco.Cidade" class="form-control" />
+                <span asp-validation-for="Cliente.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success mt-2 mb-2" type="submit">Salvar Cliente</button>
+                @* <input type="submit" value="Create" class="btn btn" /> *@
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Index">← Voltar para Lista de Clientes</a>
+</div>
+
+
+@if (Model.Id != null)
+{
+    <div class="alert alert-success mt-3">
+        Cliente cadastrado com sucesso!
+    </div>
+}

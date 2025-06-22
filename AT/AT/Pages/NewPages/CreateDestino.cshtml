@@ -1,0 +1,44 @@
+﻿@page
+@model AT.Pages.NewPages.CreateDestinoModel
+@{
+    ViewData["Title"] = "Cadastrar Destino";
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<h1>Destinos Cadastrados</h1>
+
+@foreach (var item in Model.Destinos)
+{
+    <p>        
+       Destino: @item.Nome - País: @item.Pais        
+    </p>
+}
+
+<h2 class="mt-2">Cadastrar Destino</h2>
+
+<div class="col-4">
+    <form method="post" asp-page-handler="Destino">        
+        <div class="mb-2">
+            <label class="mt-1" for="Nome">Nome:</label>
+            <input class="form-control" type="text" asp-for="Destino.Nome" />
+            <small class="text-danger" asp-validation-for="Destino.Nome"></small>
+        </div>        
+        <div class="mb-2">
+            <label class="mt-1" for="Pais">País:</label>
+            <input class="form-control" type="text" asp-for="Destino.Pais" />
+        </div>
+        <button class="btn btn-outline-primary mt-2 mb-2" type="submit">Salvar Destino</button>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </form>    
+</div>
+
+@if (Model.Id != null)
+{
+    <div class="alert alert-success mt-3">
+        Destino cadastrado com sucesso!                
+    </div>
+}

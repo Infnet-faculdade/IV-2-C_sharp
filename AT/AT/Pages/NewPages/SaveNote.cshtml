@@ -1,0 +1,26 @@
+﻿@page
+@model AT.Pages.NewPages.SaveNoteModel
+@{
+    ViewData["Title"] = "Salvar Nota";
+}
+
+<h2>Escreva sua nota</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="content">Nota:</label>
+        <textarea asp-for="Input.Content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Input.Content" class="text-danger"></span>
+    </div>
+    <button type="submit" name="action" value="save" class="btn btn-success mt-2">Salvar</button>
+    <button type="submit" name="action" value="clear" class="btn btn-primary  mt-2">Nova Nota</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.FileName))
+{
+    <div class="alert alert-success mt-3">
+        Nota salva com sucesso!
+        <br />
+        <a href="~/files/@Model.FileName" download>Clique aqui para baixar a nota</a>
+    </div>
+}

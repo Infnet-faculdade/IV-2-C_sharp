@@ -1,0 +1,58 @@
+﻿@page
+@model AT.Pages.NewPages.CreatePacoteTuristicoModel
+@{
+    ViewData["Title"] = "Cadastrar Cliente";
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<h1>Pacotes Turísticos Cadastrados</h1>
+
+@foreach (var item in Model.PacotesTuristicos)
+{
+    <li>
+        <a asp-page="/NewPages/Details" asp-route-id="@item.Id">
+            Nome: @item.Titulo
+        </a>
+    </li>
+}
+
+<h2>Cadastrar Pacote Turístico</h2>
+
+<div class="col-4">
+    <form method="post">        
+        <div class="mb-2">
+            <label class="mt-1" for="Nome">Nome:</label>
+            <input class="form-control" type="text" id="Name" asp-for="PacoteTuristico.Titulo" />   
+            <small class="text-danger" asp-validation-for="Cliente.Nome"></small>
+        </div>
+        <div class="mb-2">
+            <label class="mt-1" for="Preco">Preco: R$</label>
+            <input class="form-control" type="number" id="Preco" asp-for="PacoteTuristico.Preco" />
+        </div>
+        <div class="mb-2">
+            <label class="mt-1" for="CapacidadeMaxima">CapacidadeMaxima:</label>
+            <input class="form-control" type="number" id="CapacidadeMaxima" asp-for="PacoteTuristico.CapacidadeMaxima" />
+        </div>
+        <div class="mb-2">
+            <label class="mt-1" for="DataInicio">DataInicio:</label>
+            <input class="form-control" type="date" id="DataInicio" asp-for="PacoteTuristico.DataInicio" />
+        </div>
+        @* <div class="mb-2">
+            <label class="mt-1" for="Email">Email:</label>
+            <input class="form-control" type="text" id="Email" asp-for="PacoteTuristico.Destinos" />
+        </div> *@
+                
+        <button class="btn btn-success mb-2" type="submit">Salvar Pacote Turístico</button>        
+
+        @* <div asp-validation-summary="All" class="text-danger"></div> *@
+    </form>
+</div>
+
+@if (Model.Id != null)
+{
+    <div class="alert alert-success mt-3">
+        Pacote turistico cadastrado com sucesso!
+    </div>
+}
